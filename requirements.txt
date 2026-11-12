@@ -1,0 +1,8 @@
+# Full pipeline requirements.
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+scikit-learn>=1.3
+scipy>=1.10
+torch>=2.1          # needed from Batch 2 onward (models/baselines).
+optuna>=3.5         # Bayesian hyper-parameter optimisation (TPE) on the validation split

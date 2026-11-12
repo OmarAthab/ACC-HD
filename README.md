@@ -39,7 +39,7 @@ UA_PROFILE=full UA_HP_JSON=results/metrics/hpo_best.json python -m experiments.r
 This builds `data/`, runs the full pipeline, and writes results and figures under `results/`.
 
 ## Reproducibility
-One seed (`config.py SEED`); UE-disjoint splits; all parameters in `config.py`; every result maps to a script. Reference hardware: a single NVIDIA T4 GPU. Gauss-Markov mobility (Liang & Haas 1999); AR(1) shadowing (3GPP TR 38.901 style); 3GPP A3 hysteresis + time-to-trigger handover.
+Fixed random seeds: the headline tables (4, 7, 9) use 5 seeds (0–4) via UA_SEEDS="0,1,2,3,4" python experiments/run_seeds.py; run_all.py performs a single-seed base run from config.py SEED, and the remaining single-seed tables are labeled as such. UE-disjoint splits; all parameters in config.py; every result maps to a script. Reference hardware: a single NVIDIA T4 GPU. Gauss-Markov mobility (Liang & Haas 1999); AR(1) shadowing (3GPP TR 38.901 style); 3GPP A3 hysteresis + time-to-trigger handover.
 
 ## Naming
 The method is **ACC-HD** (Adaptive Conformal Coverage for Handover Decisions) in the paper. Some internal

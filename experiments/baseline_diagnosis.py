@@ -1,5 +1,5 @@
 """
-baseline_diagnosis.py  -  Package B / B-12  [CRIT]
+baseline_diagnosis.py
 ==================================================
 Provides the sanity check
 against expected A3/CHO (B0) behaviour.

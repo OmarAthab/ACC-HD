@@ -105,7 +105,7 @@ def main():
     for k, v in row.items():
         print(f"  {k:26s} {v}")
     print(f"\nMeasured on: {plat}. This is NOT a UE/edge figure; frame UE/edge "
-          f"deployment as future work (Package A / A7).")
+          f"deployment as future work.")
     print(f"Saved -> {OUT / 'energy_cost.csv'}")
 
 

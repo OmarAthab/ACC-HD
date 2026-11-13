@@ -31,7 +31,7 @@ from simulator.scenarios import SCENARIOS, SOURCE_SCENARIO, SHIFT_SCENARIOS
 
 
 def _causal_zscore(radio, min_count: int = 20, eps: float = 1e-6):
-    """B-13 FIX (R1.8): PAST-ONLY (causal) per-UE z-score.
+    """PAST-ONLY (causal) per-UE z-score.
 
     At step t the mean/std use steps [0..t] only (an expanding estimate), never the
     future, so no future observation enters a sample. For the first `min_count`
@@ -60,7 +60,7 @@ def _windows_from_ue(rsrp, sinr, serving, targets, window_len, stride):
       serving_now: (n,) current serving cell at the decision step
     """
     num_steps, num_cells = rsrp.shape
-    # B-13: causal (past-only) per-UE standardisation (was whole-trajectory -> leak).
+    # Causal (past-only) per-UE standardisation (avoids whole-trajectory leakage).
     radio = _causal_zscore(np.concatenate([rsrp, sinr], axis=1))
     serving_onehot = np.eye(num_cells, dtype=np.float32)[serving]
     feat = np.concatenate([radio, serving_onehot], axis=1)     # (num_steps, 3K)

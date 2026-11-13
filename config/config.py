@@ -26,7 +26,7 @@ DATA_DIR = PROJECT_ROOT / "data"        # organized per-scenario datasets (train
 # ---------------------------------------------------------------------------
 # Global reproducibility
 # ---------------------------------------------------------------------------
-SEED = 42                       # one seed controls all randomness in the project
+SEED = 42                       # default base seed for run_all.py; the 5-seed protocol uses run_seeds.py
 
 
 # ---------------------------------------------------------------------------

@@ -9,7 +9,7 @@ Hyper-parameters are NOT hand-picked. `models/hpo.py` runs Optuna's TPE (Bayesia
 1. `python run_simulator.py`
    Builds isolated scenario datasets under `data/`:
    - `data/mixed/` (SOURCE) → split BY UE into `train / val / calib / test` (no leakage).
-   - `data/pedestrian/test`, `data/vehicular/test`, `data/non_stationary/test` → shifted, unseen tests.
+   - `data/vehicular_fast/test`, `data/high_blockage/test`, `data/non_stationary/test` → shifted, unseen tests.
    - `data/data_dictionary.md` explains every file/field.
 2. `python experiments/run_all.py`
    - Trains ACC-HD (focal) + baselines on `mixed/train`; tunes temperature + policy thresholds on `mixed/val`; calibrates conformal on `mixed/calib`.
@@ -23,11 +23,11 @@ Hyper-parameters are NOT hand-picked. `models/hpo.py` runs Optuna's TPE (Bayesia
 - `fig_coverage_under_shift.png`, reliability diagram, per-method bars, radar, KPI heatmap, loss curve.
 
 ## Per-class operating points (config.py SERVICE_CLASSES)
-URLLC alpha=0.05, eMBB alpha=0.10, mMTC alpha=0.15 — ordered by strictness, informative sets. The full sweep (ALPHA_SWEEP, incl. the 99% extreme) is reported as the trade-off curve.
+URLLC alpha=0.02, eMBB alpha=0.05, mMTC alpha=0.10 — ordered by strictness, informative sets. The full sweep (ALPHA_SWEEP, incl. the 99% extreme) is reported as the trade-off curve.
 
 ## Profiles (config.py)
 - LIGHT (default): num_ues=24, num_ues_shift=12, window_stride=5 — a quick smoke test only. Too small for reliable per-class conformal (a class may get few calibration samples).
-- FULL (for real results, on a GPU): num_ues≈90, num_ues_shift≈30, window_stride=1. Set `UA_PROFILE=full` to switch.
+- FULL (for real results, on a GPU): num_ues≈90, num_ues_shift≈30, window_stride=2. Set `UA_PROFILE=full` to switch.
 
 ## Run on a GPU (recommended for the FULL profile)
 On any machine with a CUDA-capable GPU:
@@ -39,7 +39,7 @@ UA_PROFILE=full UA_HP_JSON=results/metrics/hpo_best.json python -m experiments.r
 This builds `data/`, runs the full pipeline, and writes results and figures under `results/`.
 
 ## Reproducibility
-Fixed random seeds: the headline tables (4, 7, 9) use 5 seeds (0–4) via UA_SEEDS="0,1,2,3,4" python experiments/run_seeds.py; run_all.py performs a single-seed base run from config.py SEED, and the remaining single-seed tables are labeled as such. UE-disjoint splits; all parameters in config.py; every result maps to a script. Reference hardware: a single NVIDIA T4 GPU. Gauss-Markov mobility (Liang & Haas 1999); AR(1) shadowing (3GPP TR 38.901 style); 3GPP A3 hysteresis + time-to-trigger handover.
+Fixed random seeds: the headline tables (4, 7, 9) use 5 seeds (0–4) via `UA_SEEDS="0,1,2,3,4" python experiments/run_seeds.py`; `run_all.py` performs a single-seed base run from `config.py SEED`, and the remaining single-seed tables are labeled as such. UE-disjoint splits; all parameters in `config.py`; every result maps to a script. Reference hardware: a single NVIDIA T4 GPU. Gauss-Markov mobility (Liang & Haas 1999); AR(1) shadowing (3GPP TR 38.901 style); 3GPP A3 hysteresis + time-to-trigger handover.
 
 ## Naming
 The method is **ACC-HD** (Adaptive Conformal Coverage for Handover Decisions) in the paper. Some internal

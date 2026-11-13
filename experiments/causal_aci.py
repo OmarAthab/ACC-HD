@@ -1,5 +1,5 @@
 """
-causal_aci.py  -  Package B / B-7  [CRIT]  (+ absorbs B-10)
+causal_aci.py
 ==========================================================
 This re-runs the drift/ACI experiment with a REALISTIC feedback delay
 (the outcome of a decision is only known H steps = horizon/stride samples later),

@@ -6,7 +6,7 @@ uncertainty-sized conformal set, or merely offering more fallback targets / the
 confidence gate / the action policy?
 
 DROP-IN REPLACEMENT for experiments/matched_ablation.py (repo v15).
-A-0 change: the previous version emitted a SINGLE matched-CHO control at
+Note: the previous version emitted a SINGLE matched-CHO control at
 m = round(mean |C|) (top-4 only). Paper Table 13 reports a bracket of FIXED
 budgets top-4 / top-5 / top-6 straddling the adaptive mean prepared (4.77). This
 version sweeps m in {4, 5, 6} so every row of Table 13 is reproduced in the CSV.

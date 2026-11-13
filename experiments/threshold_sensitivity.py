@@ -5,7 +5,7 @@ Shows the confidence-aware policy is insensitive to its three hand-tuned knobs
 (theta_high, theta_low, kappa) AROUND ITS DEPLOYED OPERATING POINT.
 
 DROP-IN REPLACEMENT for experiments/threshold_sensitivity.py (repo v15).
-A-0 change: the previous grid (theta_high in [0.45,0.65]) EXCLUDED the deployed
+Note: the previous grid (theta_high in [0.45,0.65]) excluded the deployed
 operating point (theta_high=0.83, theta_low=0.76, eta=2, kappa=7). This version
 re-centres the grid on the DEPLOYED thresholds, matching paper Section 5.13
 (36 points), and appends the deployed operating point as a final labelled row so
@@ -47,7 +47,7 @@ THETA_LOW = [0.70, 0.75, 0.80]
 KAPPA = [5, 7, 9]
 HO_MAX_SET = 2                      # eta
 
-# deployed operating point, appended as a final labelled row (A-0 / D1)
+# deployed operating point, appended as a final labelled row
 DEPLOYED = dict(theta_high=0.83, theta_low=0.76, kappa=7, ho_max_set=2)
 
 

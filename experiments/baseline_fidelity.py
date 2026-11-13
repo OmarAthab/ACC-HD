@@ -1,5 +1,5 @@
 """
-baseline_fidelity.py  —  Package B / B-2
+baseline_fidelity.py
 ========================================
 It does NOT change any number; it makes the comparison TRANSPARENT so
 the baselines are faithfully implemented and that the high HOF of the
